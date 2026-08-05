@@ -1,0 +1,206 @@
+{
+  "case_id": "complex_case",
+  "original_contract": {
+    "source_path": "data\\test_contracts\\complex_case\\original_contract.jpg",
+    "file_name": "original_contract.jpg",
+    "document_type": "original_contract",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "mime_type": "image/jpeg",
+    "extracted_text": "# CONTRATO DE SERVICIOS DE CONSULTORÍA\n\nEste contrato se celebra el 10 de enero de 2024 entre Orion Consulting Group (\"Consultor\") y GreenWave Energía S.A. (\"Cliente\").\n\n1. Alcance del Servicio  \n   El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable.\n\n2. Duración  \n   El servicio tendrá una duración de 6 meses.\n\n3. Honorarios  \n   El Cliente pagará al Consultor una tarifa mensual de USD 8.000.\n\n4. Entregables  \n   El Consultor entregará reportes mensuales de avance y un informe final con recomendaciones estratégicas.\n\n5. Confidencialidad  \n   Toda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable  \n   Este contrato se regirá por las leyes del Estado de California.",
+    "character_count": 800,
+    "latency_seconds": 3.836,
+    "usage": {
+      "completion_tokens": 182,
+      "prompt_tokens": 1238,
+      "total_tokens": 1420,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1024
+      }
+    }
+  },
+  "amendment": {
+    "source_path": "data\\test_contracts\\complex_case\\amendment.jpg",
+    "file_name": "amendment.jpg",
+    "document_type": "amendment",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "mime_type": "image/jpeg",
+    "extracted_text": "# CONTRATO DE SERVICIOS DE CONSULTORÍA – ENMIENDA\n\nLa presente enmienda modifica el contrato celebrado el 10 de enero de 2024 entre Orion Consulting Group (“Consultor”) y GreenWave Energía S.A. (“Cliente”).\n\n1. Alcance del Servicio  \nEl Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable y análisis regulatorio.\n\n2. Duración  \nEl servicio tendrá una duración de 9 meses.\n\n3. Honorarios  \nEl Cliente pagará al Consultor una tarifa mensual de USD 9.500.\n\n4. Entregables  \nEl Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.\n\n5. Confidencialidad  \nToda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable  \nEste contrato se regirá por las leyes del Estado de California.\n\n7. Propiedad Intelectual  \nTodos los entregables producidos durante el proyecto pasarán a ser propiedad del Cliente una vez realizado el pago final.",
+    "character_count": 995,
+    "latency_seconds": 3.063,
+    "usage": {
+      "completion_tokens": 223,
+      "prompt_tokens": 1237,
+      "total_tokens": 1460,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1024
+      }
+    }
+  },
+  "contextualization": {
+    "case_id": "complex_case",
+    "original_sections": [
+      {
+        "section_id": "1",
+        "title": "Alcance del Servicio",
+        "source_document": "original_contract",
+        "text_excerpt": "El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable.",
+        "purpose": "Define the scope of services to be provided by the Consultant."
+      },
+      {
+        "section_id": "2",
+        "title": "Duración",
+        "source_document": "original_contract",
+        "text_excerpt": "El servicio tendrá una duración de 6 meses.",
+        "purpose": "Specifies the duration of the consulting services."
+      },
+      {
+        "section_id": "3",
+        "title": "Honorarios",
+        "source_document": "original_contract",
+        "text_excerpt": "El Cliente pagará al Consultor una tarifa mensual de USD 8.000.",
+        "purpose": "Outlines the payment terms for the Consultant's services."
+      },
+      {
+        "section_id": "4",
+        "title": "Entregables",
+        "source_document": "original_contract",
+        "text_excerpt": "El Consultor entregará reportes mensuales de avance y un informe final con recomendaciones estratégicas.",
+        "purpose": "Details the deliverables expected from the Consultant."
+      },
+      {
+        "section_id": "5",
+        "title": "Confidencialidad",
+        "source_document": "original_contract",
+        "text_excerpt": "Toda la información intercambiada durante el proyecto será considerada confidencial.",
+        "purpose": "Establishes confidentiality obligations regarding shared information."
+      },
+      {
+        "section_id": "6",
+        "title": "Legislación Aplicable",
+        "source_document": "original_contract",
+        "text_excerpt": "Este contrato se regirá por las leyes del Estado de California.",
+        "purpose": "Specifies the governing law for the contract."
+      }
+    ],
+    "amendment_sections": [
+      {
+        "section_id": "1",
+        "title": "Alcance del Servicio",
+        "source_document": "amendment",
+        "text_excerpt": "El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable y análisis regulatorio.",
+        "purpose": "Defines the modified scope of services to be provided by the Consultant."
+      },
+      {
+        "section_id": "2",
+        "title": "Duración",
+        "source_document": "amendment",
+        "text_excerpt": "El servicio tendrá una duración de 9 meses.",
+        "purpose": "Specifies the modified duration of the consulting services."
+      },
+      {
+        "section_id": "3",
+        "title": "Honorarios",
+        "source_document": "amendment",
+        "text_excerpt": "El Cliente pagará al Consultor una tarifa mensual de USD 9.500.",
+        "purpose": "Outlines the modified payment terms for the Consultant's services."
+      },
+      {
+        "section_id": "4",
+        "title": "Entregables",
+        "source_document": "amendment",
+        "text_excerpt": "El Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.",
+        "purpose": "Details the modified deliverables expected from the Consultant."
+      },
+      {
+        "section_id": "5",
+        "title": "Confidencialidad",
+        "source_document": "amendment",
+        "text_excerpt": "Toda la información intercambiada durante el proyecto será considerada confidencial.",
+        "purpose": "Establishes confidentiality obligations regarding shared information."
+      },
+      {
+        "section_id": "6",
+        "title": "Legislación Aplicable",
+        "source_document": "amendment",
+        "text_excerpt": "Este contrato se regirá por las leyes del Estado de California.",
+        "purpose": "Specifies the governing law for the contract."
+      },
+      {
+        "section_id": "7",
+        "title": "Propiedad Intelectual",
+        "source_document": "amendment",
+        "text_excerpt": "Todos los entregables producidos durante el proyecto pasarán a ser propiedad del Cliente una vez realizado el pago final.",
+        "purpose": "Defines the ownership of intellectual property related to the deliverables."
+      }
+    ],
+    "section_correspondences": [
+      {
+        "original_section_id": "1",
+        "amendment_section_id": "1",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Both sections define the scope of services, with the amendment expanding the scope to include regulatory analysis."
+      },
+      {
+        "original_section_id": "2",
+        "amendment_section_id": "2",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Both sections specify the duration of the consulting services, with the amendment extending the duration."
+      },
+      {
+        "original_section_id": "3",
+        "amendment_section_id": "3",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Both sections outline the payment terms, with the amendment increasing the monthly fee."
+      },
+      {
+        "original_section_id": "4",
+        "amendment_section_id": "4",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Both sections detail the deliverables, with the amendment changing the frequency of progress reports."
+      },
+      {
+        "original_section_id": "5",
+        "amendment_section_id": "5",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Both sections establish confidentiality obligations, remaining unchanged in content."
+      },
+      {
+        "original_section_id": "6",
+        "amendment_section_id": "6",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Both sections specify the governing law, remaining unchanged."
+      },
+      {
+        "original_section_id": "7",
+        "amendment_section_id": null,
+        "relationship_type": "new_in_amendment",
+        "rationale": "The amendment introduces a new section on intellectual property that was not present in the original contract."
+      }
+    ],
+    "new_blocks_in_amendment": [
+      "Propiedad Intelectual"
+    ],
+    "potentially_missing_blocks": [],
+    "structural_summary": "The amendment modifies several sections of the original contract while introducing a new section on intellectual property.",
+    "confidence_score": 0.95,
+    "latency_seconds": 16.476
+  }
+}

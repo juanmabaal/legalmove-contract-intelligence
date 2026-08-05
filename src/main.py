@@ -2,15 +2,18 @@ import argparse
 import json
 from pathlib import Path
 
-from src.config.settings import OUTPUT_DIR, VISION_PROVIDER
-from src.graph.graph_builder import run_image_parsing_graph
+from src.config.settings import OUTPUT_DIR, VISION_PROVIDER, LLM_PROVIDER
+from src.graph.graph_builder import (
+    run_contextualization_graph,
+    run_image_parsing_graph,
+    )
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
             "LegalMove Contract Intelligence - "
-            "Image parsing pipeline for original contracts and amendments."
+            "Multimodal contract analysis pipeline."
         )
     )
 
@@ -39,19 +42,32 @@ def build_argument_parser() -> argparse.ArgumentParser:
     )
 
     parser.add_argument(
+        "--llm-provider",
+        default=LLM_PROVIDER,
+        help="Text LLM provider to use. Supported values: openai, xai, deepseek.",
+    )
+
+    parser.add_argument(
+        "--pipeline",
+        default="contextualization",
+        choices=["image-parsing", "contextualization"],
+        help="Pipeline stage to execute.",
+    )
+
+    parser.add_argument(
         "--save-output",
         action="store_true",
-        help="Save the parsed output JSON under outputs/examples.",
+        help="Save the output JSON under outputs/examples.",
     )
 
     return parser
 
 
-def save_output(case_id: str, output: dict) -> Path:
+def save_output(case_id: str, pipeline: str, output: dict) -> Path:
     output_dir = OUTPUT_DIR / "examples"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_path = output_dir / f"{case_id}_image_parsing_output.json"
+    output_path = output_dir / f"{case_id}_{pipeline}_output.json"
 
     with output_path.open("w", encoding="utf-8") as file:
         json.dump(output, file, indent=2, ensure_ascii=False)
@@ -63,21 +79,31 @@ def main() -> None:
     parser = build_argument_parser()
     args = parser.parse_args()
 
-    output = run_image_parsing_graph(
-        case_id=args.case_id,
-        original_image_path=args.original,
-        amendment_image_path=args.amendment,
-        vision_provider=args.vision_provider,
-    )
+    if args.pipeline == "image-parsing":
+        output = run_image_parsing_graph(
+            case_id=args.case_id,
+            original_image_path=args.original,
+            amendment_image_path=args.amendment,
+            vision_provider=args.vision_provider,
+        )
+    else:
+        output = run_contextualization_graph(
+            case_id=args.case_id,
+            original_image_path=args.original,
+            amendment_image_path=args.amendment,
+            vision_provider=args.vision_provider,
+            llm_provider=args.llm_provider,
+        )
 
     print("=" * 100)
-    print("LegalMove Contract Intelligence - Image Parsing Output")
+    print(f"LegalMove Contract Intelligence - {args.pipeline} Output")
     print("=" * 100)
     print(json.dumps(output, indent=2, ensure_ascii=False))
 
     if args.save_output:
         output_path = save_output(
             case_id=args.case_id,
+            pipeline=args.pipeline,
             output=output,
         )
 

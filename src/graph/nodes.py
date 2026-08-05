@@ -1,6 +1,10 @@
+from src.agents.contextualization_agent import run_contextualization_agent
 from src.graph.state import ContractAnalysisState
 from src.image_parser import parse_contract_image
-from src.models import ImageParsingPairOutput
+from src.models import (
+    ContractContextualizationPipelineOutput,
+    ImageParsingPairOutput
+    )
 
 def parse_original_contract_node(
     state: ContractAnalysisState,
@@ -30,6 +34,21 @@ def parse_amendment_contract_node(
         "amendment": parsed_amendment,
     }
 
+def contextualization_agent_node(
+        state: ContractAnalysisState,
+) -> ContractAnalysisState:
+    contextualization = run_contextualization_agent(
+        case_id=state["case_id"],
+        original_contract_text=state["original_contract"].extracted_text,
+        amendment_text=state["amendment"].extracted_text,
+        provider=state.get("llm_provider"),
+    )
+
+    return {
+        **state,
+        "contextualization": contextualization,
+    }
+
 def build_image_parsing_output_node(
         state: ContractAnalysisState,
 ) -> ContractAnalysisState:
@@ -37,6 +56,22 @@ def build_image_parsing_output_node(
         case_id=state["case_id"],
         original_contract=state["original_contract"],
         amendment=state["amendment"],
+    )
+
+    return {
+        **state,
+        "final_output": output.model_dump(),
+        "error": None,
+    }
+
+def build_contextualization_output_node(
+         state: ContractAnalysisState,
+ ) -> ContractAnalysisState:
+    output = ContractContextualizationPipelineOutput(
+        case_id = state["case_id"],
+        original_contract=state["original_contract"],
+        amendment=state["amendment"],
+        contextualization=state["contextualization"],
     )
 
     return {

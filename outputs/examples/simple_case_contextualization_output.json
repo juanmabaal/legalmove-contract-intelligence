@@ -1,0 +1,206 @@
+{
+  "case_id": "simple_case",
+  "original_contract": {
+    "source_path": "data\\test_contracts\\simple_case\\original_contract.jpg",
+    "file_name": "original_contract.jpg",
+    "document_type": "original_contract",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "mime_type": "image/jpeg",
+    "extracted_text": "# CONTRATO DE LICENCIA DE SOFTWARE\n\nEl presente Contrato de Licencia de Software (\"Contrato\") se celebra el 1 de marzo de 2024 entre **TechNova S.A.** (\"Licenciante\") y **DataBridge Soluciones S.R.L.** (\"Licenciatario\").\n\n1. **Otorgamiento de Licencia**  \n   El Licenciante otorga al Licenciatario una licencia no exclusiva e intransferible para utilizar el software denominado \"NovaAnalytics\" únicamente para fines internos de la empresa.\n\n2. **Plazo**  \n   El presente contrato tendrá una duración de 12 meses a partir de la fecha de firma.\n\n3. **Pago**  \n   El Licenciatario se compromete a pagar al Licenciante una tarifa anual de licencia de USD 12.000, pagadera dentro de los 30 días posteriores a la recepción de la factura.\n\n4. **Soporte**  \n   El Licenciante brindará soporte técnico vía correo electrónico durante horario laboral.\n\n5. **Terminación**  \n   Cualquiera de las partes podrá rescindir el contrato mediante notificación escrita con 30 días de anticipación.\n\n6. **Confidencialidad**  \n   Ambas partes acuerdan mantener la confidencialidad de toda la información propietaria intercambiada durante la vigencia del contrato.",
+    "character_count": 1141,
+    "latency_seconds": 5.709,
+    "usage": {
+      "completion_tokens": 274,
+      "prompt_tokens": 1238,
+      "total_tokens": 1512,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1024
+      }
+    }
+  },
+  "amendment": {
+    "source_path": "data\\test_contracts\\simple_case\\amendment.jpg",
+    "file_name": "amendment.jpg",
+    "document_type": "amendment",
+    "provider": "openai",
+    "model": "gpt-4o",
+    "mime_type": "image/jpeg",
+    "extracted_text": "# CONTRATO DE LICENCIA DE SOFTWARE – ENMIENDA\n\nLa presente enmienda modifica el Contrato de Licencia de Software celebrado el 1 de marzo de 2024 entre **TechNova S.A.** (\"Licenciante\") y **DataBridge Soluciones S.R.L.** (\"Licenciatario\").\n\n1. **Otorgamiento de Licencia**  \n   El Licenciante otorga al Licenciatario una licencia no exclusiva para utilizar el software denominado \"NovaAnalytics\" para operaciones internas de negocio.\n\n2. **Plazo**  \n   El presente contrato tendrá una duración de 24 meses a partir de la fecha de firma.\n\n3. **Pago**  \n   El Licenciatario se compromete a pagar al Licenciante una tarifa anual de licencia de USD 15.000, pagadera dentro de los 30 días posteriores a la recepción de la factura.\n\n4. **Soporte**  \n   El Licenciante brindará soporte técnico vía correo electrónico y chat durante horario laboral.\n\n5. **Terminación**  \n   Cualquiera de las partes podrá rescindir el contrato mediante notificación escrita con 60 días de anticipación.\n\n6. **Confidencialidad**  \n   Ambas partes acuerdan mantener la confidencialidad de toda la información propietaria intercambiada durante la vigencia del contrato.\n\n7. **Protección de Datos**  \n   El Licenciante se compromete a cumplir con las normativas aplicables en materia de protección de datos en relación con la información del Licenciatario.",
+    "character_count": 1327,
+    "latency_seconds": 4.501,
+    "usage": {
+      "completion_tokens": 318,
+      "prompt_tokens": 1237,
+      "total_tokens": 1555,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1024
+      }
+    }
+  },
+  "contextualization": {
+    "case_id": "simple_case",
+    "original_sections": [
+      {
+        "section_id": "1",
+        "title": "Otorgamiento de Licencia",
+        "source_document": "original_contract",
+        "text_excerpt": "El Licenciante otorga al Licenciatario una licencia no exclusiva e intransferible para utilizar el software denominado \"NovaAnalytics\" únicamente para fines internos de la empresa.",
+        "purpose": "Establecer los términos de la licencia otorgada por el Licenciante al Licenciatario."
+      },
+      {
+        "section_id": "2",
+        "title": "Plazo",
+        "source_document": "original_contract",
+        "text_excerpt": "El presente contrato tendrá una duración de 12 meses a partir de la fecha de firma.",
+        "purpose": "Definir la duración del contrato."
+      },
+      {
+        "section_id": "3",
+        "title": "Pago",
+        "source_document": "original_contract",
+        "text_excerpt": "El Licenciatario se compromete a pagar al Licenciante una tarifa anual de licencia de USD 12.000, pagadera dentro de los 30 días posteriores a la recepción de la factura.",
+        "purpose": "Establecer las condiciones de pago por parte del Licenciatario."
+      },
+      {
+        "section_id": "4",
+        "title": "Soporte",
+        "source_document": "original_contract",
+        "text_excerpt": "El Licenciante brindará soporte técnico vía correo electrónico durante horario laboral.",
+        "purpose": "Definir las condiciones de soporte técnico proporcionado por el Licenciante."
+      },
+      {
+        "section_id": "5",
+        "title": "Terminación",
+        "source_document": "original_contract",
+        "text_excerpt": "Cualquiera de las partes podrá rescindir el contrato mediante notificación escrita con 30 días de anticipación.",
+        "purpose": "Establecer las condiciones bajo las cuales el contrato puede ser rescindido."
+      },
+      {
+        "section_id": "6",
+        "title": "Confidencialidad",
+        "source_document": "original_contract",
+        "text_excerpt": "Ambas partes acuerdan mantener la confidencialidad de toda la información propietaria intercambiada durante la vigencia del contrato.",
+        "purpose": "Proteger la información confidencial compartida entre las partes."
+      }
+    ],
+    "amendment_sections": [
+      {
+        "section_id": "1",
+        "title": "Otorgamiento de Licencia",
+        "source_document": "amendment",
+        "text_excerpt": "El Licenciante otorga al Licenciatario una licencia no exclusiva para utilizar el software denominado \"NovaAnalytics\" para operaciones internas de negocio.",
+        "purpose": "Establecer los términos de la licencia otorgada por el Licenciante al Licenciatario."
+      },
+      {
+        "section_id": "2",
+        "title": "Plazo",
+        "source_document": "amendment",
+        "text_excerpt": "El presente contrato tendrá una duración de 24 meses a partir de la fecha de firma.",
+        "purpose": "Definir la duración del contrato."
+      },
+      {
+        "section_id": "3",
+        "title": "Pago",
+        "source_document": "amendment",
+        "text_excerpt": "El Licenciatario se compromete a pagar al Licenciante una tarifa anual de licencia de USD 15.000, pagadera dentro de los 30 días posteriores a la recepción de la factura.",
+        "purpose": "Establecer las condiciones de pago por parte del Licenciatario."
+      },
+      {
+        "section_id": "4",
+        "title": "Soporte",
+        "source_document": "amendment",
+        "text_excerpt": "El Licenciante brindará soporte técnico vía correo electrónico y chat durante horario laboral.",
+        "purpose": "Definir las condiciones de soporte técnico proporcionado por el Licenciante."
+      },
+      {
+        "section_id": "5",
+        "title": "Terminación",
+        "source_document": "amendment",
+        "text_excerpt": "Cualquiera de las partes podrá rescindir el contrato mediante notificación escrita con 60 días de anticipación.",
+        "purpose": "Establecer las condiciones bajo las cuales el contrato puede ser rescindido."
+      },
+      {
+        "section_id": "6",
+        "title": "Confidencialidad",
+        "source_document": "amendment",
+        "text_excerpt": "Ambas partes acuerdan mantener la confidencialidad de toda la información propietaria intercambiada durante la vigencia del contrato.",
+        "purpose": "Proteger la información confidencial compartida entre las partes."
+      },
+      {
+        "section_id": "7",
+        "title": "Protección de Datos",
+        "source_document": "amendment",
+        "text_excerpt": "El Licenciante se compromete a cumplir con las normativas aplicables en materia de protección de datos en relación con la información del Licenciatario.",
+        "purpose": "Establecer las obligaciones del Licenciante respecto a la protección de datos."
+      }
+    ],
+    "section_correspondences": [
+      {
+        "original_section_id": "1",
+        "amendment_section_id": "1",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Ambas se refieren a la concesión de la licencia, aunque con ligeras variaciones en el texto."
+      },
+      {
+        "original_section_id": "2",
+        "amendment_section_id": "2",
+        "relationship_type": "appears_structurally_modified",
+        "rationale": "La duración del contrato ha cambiado de 12 meses a 24 meses."
+      },
+      {
+        "original_section_id": "3",
+        "amendment_section_id": "3",
+        "relationship_type": "appears_structurally_modified",
+        "rationale": "La tarifa anual de licencia ha cambiado de USD 12.000 a USD 15.000."
+      },
+      {
+        "original_section_id": "4",
+        "amendment_section_id": "4",
+        "relationship_type": "appears_structurally_modified",
+        "rationale": "El soporte técnico ahora incluye chat además de correo electrónico."
+      },
+      {
+        "original_section_id": "5",
+        "amendment_section_id": "5",
+        "relationship_type": "appears_structurally_modified",
+        "rationale": "El período de notificación para la terminación ha cambiado de 30 días a 60 días."
+      },
+      {
+        "original_section_id": "6",
+        "amendment_section_id": "6",
+        "relationship_type": "same_or_equivalent",
+        "rationale": "Ambas se refieren a la confidencialidad de la información compartida."
+      },
+      {
+        "original_section_id": null,
+        "amendment_section_id": "7",
+        "relationship_type": "new_in_amendment",
+        "rationale": "Esta sección sobre protección de datos no estaba presente en el contrato original."
+      }
+    ],
+    "new_blocks_in_amendment": [
+      "Protección de Datos"
+    ],
+    "potentially_missing_blocks": [],
+    "structural_summary": "La enmienda modifica varios términos del contrato original, incluyendo la duración, el pago y el soporte, y añade una nueva sección sobre protección de datos.",
+    "confidence_score": 0.95,
+    "latency_seconds": 25.008
+  }
+}
