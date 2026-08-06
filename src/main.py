@@ -2,6 +2,8 @@ import argparse
 import json
 from pathlib import Path
 
+from src.observability.tracing import get_observability_status
+
 from src.config.settings import LLM_PROVIDER, OUTPUT_DIR, VISION_PROVIDER
 from src.graph.graph_builder import (
     run_contextualization_graph,
@@ -108,6 +110,11 @@ def main() -> None:
     print(f"LegalMove Contract Intelligence - {args.pipeline} Output")
     print("=" * 100)
     print(json.dumps(output, indent=2, ensure_ascii=False))
+
+    print("-" * 100)
+    print("Observability Status")
+    print("-" * 100)
+    print(json.dumps(get_observability_status(), indent=2, ensure_ascii=False))
 
     if args.save_output:
         output_path = save_output(
