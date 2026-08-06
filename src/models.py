@@ -132,3 +132,110 @@ class ContractContextualizationPipelineOutput(BaseModel):
     contextualization: ContextualizationOutput = Field(
         description="Structural comparative map produced by the ContextualizationAgent."
     )
+
+class ContractChange(BaseModel):
+    change_id: str = Field(
+        description="Unique identifier for the detected change."
+    )
+    change_type: Literal[
+        "addition",
+        "deletion",
+        "modification",
+        "unclear",
+    ] = Field(
+        description="Type of detected contract change."
+    )
+    affected_section_id: str | None = Field(
+        default=None,
+        description="Identifier of the section affected by the change."
+    )
+    affected_section_title: str | None = Field(
+        default=None,
+        description="Title or descriptive name of the affected section."
+    )
+    legal_topic: str = Field(
+        description="Legal or commercial topic affected by the change."
+    )
+    original_text: str | None = Field(
+        default=None,
+        description="Relevant original contract text. Use null for additions."
+    )
+    amendment_text: str | None = Field(
+        default=None,
+        description="Relevant amendment text. Use null for deletions."
+    )
+    change_summary: str = Field(
+        description="Clear explanation of what changed."
+    )
+    rationale: str = Field(
+        description="Reasoning based only on the original contract, amendment and contextual map."
+    )
+    impact_level: Literal[
+        "low",
+        "medium",
+        "high",
+        "unclear",
+    ] = Field(
+        default="unclear",
+        description="Estimated review impact level for legal operations triage."
+    )
+
+
+class ContractChangeOutput(BaseModel):
+    case_id: str = Field(
+        description="Identifier of the contract analysis case."
+    )
+    sections_changed: list[str] = Field(
+        default_factory=list,
+        description="List of section identifiers or names where changes were detected."
+    )
+    topics_touched: list[str] = Field(
+        default_factory=list,
+        description="List of legal or commercial topics affected by the amendment."
+    )
+    additions: list[ContractChange] = Field(
+        default_factory=list,
+        description="New clauses, blocks or obligations added by the amendment."
+    )
+    deletions: list[ContractChange] = Field(
+        default_factory=list,
+        description="Clauses, blocks or obligations removed by the amendment."
+    )
+    modifications: list[ContractChange] = Field(
+        default_factory=list,
+        description="Existing clauses or terms that were modified by the amendment."
+    )
+    unclear_items: list[str] = Field(
+        default_factory=list,
+        description="Items that could not be confidently classified."
+    )
+    summary_of_the_change: str = Field(
+        description="Executive summary of the overall contract changes."
+    )
+    confidence_score: float = Field(
+        ge=0,
+        le=1,
+        description="Confidence score for the extracted changes, from 0 to 1."
+    )
+    latency_seconds: float = Field(
+        default=0.0,
+        description="Extraction agent latency in seconds."
+    )
+
+
+class ContractExtractionPipelineOutput(BaseModel):
+    case_id: str = Field(
+        description="Identifier of the contract analysis case."
+    )
+    original_contract: ParsedContractText = Field(
+        description="Parsed original contract text and metadata."
+    )
+    amendment: ParsedContractText = Field(
+        description="Parsed amendment text and metadata."
+    )
+    contextualization: ContextualizationOutput = Field(
+        description="Structural comparative map produced by the ContextualizationAgent."
+    )
+    extraction: ContractChangeOutput = Field(
+        description="Final change extraction output produced by the ExtractionAgent."
+    )

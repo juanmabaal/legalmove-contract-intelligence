@@ -1,5 +1,5 @@
 from typing import Any, TypedDict
-from src.models import ContextualizationOutput, ParsedContractText
+from src.models import ContextualizationOutput, ParsedContractText, ContractChangeOutput
 
 class ContractAnalysisState(TypedDict, total=False):
     case_id: str
@@ -14,6 +14,7 @@ class ContractAnalysisState(TypedDict, total=False):
     amendment: ParsedContractText
 
     contextualization: ContextualizationOutput
+    extraction: ContractChangeOutput
 
     final_output: dict[str,Any]
 
