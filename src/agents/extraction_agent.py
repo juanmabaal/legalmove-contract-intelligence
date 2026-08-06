@@ -5,6 +5,8 @@ from typing import Any
 
 from langchain_core.prompts import ChatPromptTemplate
 
+from src.observability.tracing import get_langfuse_callbacks, trace_generation
+
 from src.models import ContextualizationOutput, ContractChangeOutput
 from src.providers.llm_factory import get_chat_model
 
@@ -173,8 +175,43 @@ def run_extraction_agent(
         contextualization_json=contextualization_json,
     )
 
-    response = llm.invoke(messages)
-    response_text = _extract_response_text(response)
+    callbacks = get_langfuse_callbacks()
+
+    llm_config: dict[str, Any] = {
+        "run_name": "extraction_llm",
+        "tags": ["legalmove", "extraction-agent"],
+        "metadata": {
+            "case_id": case_id,
+            "agent": "ExtractionAgent",
+        },
+    }
+
+    if callbacks:
+        llm_config["callbacks"] = callbacks
+
+    with trace_generation(
+        name="extraction_agent_generation",
+        model=getattr(llm, "model_name", "unknown"),
+        input_data={
+            "case_id": case_id,
+            "original_contract_length": len(original_contract_text),
+            "amendment_length": len(amendment_text),
+        },
+        metadata={
+            "agent": "ExtractionAgent",
+            "provider": provider or "default",
+        },
+    ) as generation:
+        response = llm.invoke(messages, config=llm_config)
+        response_text = _extract_response_text(response)
+
+        generation.update(
+            output_data={
+                "response_preview": response_text[:2000],
+            }
+        )
+
+        
     response_data = _extract_json_object(response_text)
 
     response_data["case_id"] = response_data.get("case_id", case_id)

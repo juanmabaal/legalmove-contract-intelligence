@@ -5,6 +5,8 @@ from typing import Any
 
 from langchain_core.prompts import ChatPromptTemplate
 
+from src.observability.tracing import get_langfuse_callbacks, trace_generation
+
 from src.models import ContextualizationOutput
 from src.providers.llm_factory import get_chat_model
 
@@ -133,8 +135,43 @@ def run_contextualization_agent(
         amendment_text=amendment_text,
     )
 
-    response = llm.invoke(messages)
-    response_text = _extract_response_text(response)
+    callbacks = get_langfuse_callbacks()
+
+    llm_config: dict[str, Any] = {
+        "run_name" : "contextualization_llm",
+        "tags": ["legalmove", "contextualization-agent"],
+        "metadata": {
+            "case_id": case_id,
+            "agent": "ContextualizationAgent",
+        },
+    }
+
+    if callbacks:
+        llm_config["callbacks"] = callbacks
+
+    with trace_generation(
+        name="contextualization_agent_generation",
+        model=getattr(llm, "model_name", "unknown"),
+        input_data={
+            "case_id": case_id,
+            "original_contract_length": len(original_contract_text),
+            "amendment_length": len(amendment_text),
+        },
+        metadata={
+            "agent": "ContextualizationAgent",
+            "provider": provider or "default",
+        },
+    ) as generation: 
+        response = llm.invoke(messages, config=llm_config)
+        response_text = _extract_response_text(response)
+
+        generation.update(
+            output_data={
+                "response_preview": response_text[:2000],
+            }
+        )
+        
+   
     response_data = _extract_json_object(response_text)
 
     try:

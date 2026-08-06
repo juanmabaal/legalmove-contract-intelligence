@@ -1,5 +1,5 @@
 {
-  "case_id": "generate_case",
+  "case_id": "generate_case_observed",
   "original_contract": {
     "source_path": "data\\test_contracts\\generate_case\\original_contract.png",
     "file_name": "original_contract.png",
@@ -7,13 +7,13 @@
     "provider": "openai",
     "model": "gpt-4o",
     "mime_type": "image/png",
-    "extracted_text": "```\nCONTRATO DE SERVICIOS DE CONSULTORÍA\n\nEl presente Contrato de Servicios de Consultoría (\"Contrato\") se celebra el 10 de \nabril de 2024 entre GreenAxis Energy LLC (\"Cliente\") y Rivera Strategic Advisory \nS.A.S. (\"Consultor\").\n\n1. Alcance del Servicio\nEl Consultor brindará servicios de consultoría estratégica relacionados con la \nexpansión de proyectos de energía renovable.\n\n2. Duración\nEl servicio tendrá una duración de 6 meses contados a partir de la fecha de firma.\n\n3. Honorarios\nEl Cliente pagará al Consultor una tarifa mensual de USD 8.000.\n\n4. Entregables\nEl Consultor entregará reportes mensuales de avance y un informe final con \nrecomendaciones estratégicas.\n\n5. Confidencialidad\nToda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable\nEste contrato se regirá por las leyes del Estado de California.\n\n_________________________          _________________________\nCliente                            Consultor\n```",
-    "character_count": 982,
-    "latency_seconds": 6.006,
+    "extracted_text": "```markdown\nCONTRATO DE SERVICIOS DE CONSULTORÍA\n\nEl presente Contrato de Servicios de Consultoría (\"Contrato\") se celebra el 10 de abril de 2024 entre GreenAxis Energy LLC (\"Cliente\") y Rivera Strategic Advisory S.A.S. (\"Consultor\").\n\n1. Alcance del Servicio\nEl Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable.\n\n2. Duración\nEl servicio tendrá una duración de 6 meses contados a partir de la fecha de firma.\n\n3. Honorarios\nEl Cliente pagará al Consultor una tarifa mensual de USD 8.000.\n\n4. Entregables\nEl Consultor entregará reportes mensuales de avance y un informe final con recomendaciones estratégicas.\n\n5. Confidencialidad\nToda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable\nEste contrato se regirá por las leyes del Estado de California.\n\n_________________________                _________________________\nCliente                                 Consultor\n```",
+    "character_count": 997,
+    "latency_seconds": 6.2,
     "usage": {
-      "completion_tokens": 219,
+      "completion_tokens": 212,
       "prompt_tokens": 898,
-      "total_tokens": 1117,
+      "total_tokens": 1110,
       "completion_tokens_details": {
         "accepted_prediction_tokens": 0,
         "audio_tokens": 0,
@@ -34,9 +34,9 @@
     "provider": "openai",
     "model": "gpt-4o",
     "mime_type": "image/png",
-    "extracted_text": "```markdown\nENMIENDA AL CONTRATO DE SERVICIOS DE CONSULTORÍA\n\nLa presente Enmienda modifica el Contrato de Servicios de Consultoría celebrado el 10 de abril de 2024 entre GreenAxis Energy LLC (\"Cliente\") y Rivera Strategic Advisory S.A.S. (\"Consultor\").\n\n1. Alcance del Servicio\nEl Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable y análisis regulatorio.\n\n2. Duración\nEl servicio tendrá una duración de 9 meses contados a partir de la fecha de firma.\n\n3. Honorarios\nEl Cliente pagará al Consultor una tarifa mensual de USD 9,500.\n\n4. Entregables\nEl Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.\n\n5. Confidencialidad\nToda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable\nEste contrato se regirá por las leyes del Estado de California.\n\n7. Propiedad Intelectual\nTodos los entregables producidos durante el proyecto pasarán a ser propiedad del Cliente una vez realizado el pago final.\n\n____________________          ____________________\nCliente                                Consultor\n```",
-    "character_count": 1172,
-    "latency_seconds": 6.252,
+    "extracted_text": "```markdown\nENMIENDA AL CONTRATO DE SERVICIOS DE CONSULTORÍA\n\nLa presente Enmienda modifica el Contrato de Servicios de Consultoría celebrado el 10 de abril de 2024 entre GreenAxis Energy LLC (\"Cliente\") y Rivera Strategic Advisory S.A.S. (\"Consultor\").\n\n1. Alcance del Servicio\nEl Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable y análisis regulatorio.\n\n2. Duración\nEl servicio tendrá una duración de 9 meses contados a partir de la fecha de firma.\n\n3. Honorarios\nEl Cliente pagará al Consultor una tarifa mensual de USD 9,500.\n\n4. Entregables\nEl Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.\n\n5. Confidencialidad\nToda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable\nEste contrato se regirá por las leyes del Estado de California.\n\n7. Propiedad Intelectual\nTodos los entregables producidos durante el proyecto pasarán a ser propiedad del Cliente una vez realizado el pago final.\n\n____________________          ____________________\nCliente                                      Consultor\n```",
+    "character_count": 1178,
+    "latency_seconds": 5.31,
     "usage": {
       "completion_tokens": 252,
       "prompt_tokens": 897,
@@ -55,7 +55,7 @@
     }
   },
   "contextualization": {
-    "case_id": "generate_case",
+    "case_id": "generate_case_observed",
     "original_sections": [
       {
         "section_id": "1",
@@ -76,21 +76,21 @@
         "title": "Honorarios",
         "source_document": "original_contract",
         "text_excerpt": "El Cliente pagará al Consultor una tarifa mensual de USD 8.000.",
-        "purpose": "Details the payment terms for the Consultant's services."
+        "purpose": "Outlines the payment terms for the Consultant's services."
       },
       {
         "section_id": "4",
         "title": "Entregables",
         "source_document": "original_contract",
         "text_excerpt": "El Consultor entregará reportes mensuales de avance y un informe final con recomendaciones estratégicas.",
-        "purpose": "Outlines the deliverables expected from the Consultant."
+        "purpose": "Details the deliverables expected from the Consultant."
       },
       {
         "section_id": "5",
         "title": "Confidencialidad",
         "source_document": "original_contract",
         "text_excerpt": "Toda la información intercambiada durante el proyecto será considerada confidencial.",
-        "purpose": "Establishes confidentiality obligations regarding shared information."
+        "purpose": "Establishes confidentiality obligations."
       },
       {
         "section_id": "6",
@@ -120,21 +120,21 @@
         "title": "Honorarios",
         "source_document": "amendment",
         "text_excerpt": "El Cliente pagará al Consultor una tarifa mensual de USD 9,500.",
-        "purpose": "Details the updated payment terms for the Consultant's services."
+        "purpose": "Outlines the updated payment terms for the Consultant's services."
       },
       {
         "section_id": "4",
         "title": "Entregables",
         "source_document": "amendment",
         "text_excerpt": "El Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.",
-        "purpose": "Outlines the updated deliverables expected from the Consultant."
+        "purpose": "Details the updated deliverables expected from the Consultant."
       },
       {
         "section_id": "5",
         "title": "Confidencialidad",
         "source_document": "amendment",
         "text_excerpt": "Toda la información intercambiada durante el proyecto será considerada confidencial.",
-        "purpose": "Establishes confidentiality obligations regarding shared information."
+        "purpose": "Establishes confidentiality obligations."
       },
       {
         "section_id": "6",
@@ -201,10 +201,10 @@
     "potentially_missing_blocks": [],
     "structural_summary": "The amendment modifies several sections of the original contract, expands the scope and duration of services, increases fees, and introduces a new section on intellectual property.",
     "confidence_score": 0.95,
-    "latency_seconds": 14.416
+    "latency_seconds": 15.682
   },
   "extraction": {
-    "case_id": "generate_case",
+    "case_id": "generate_case_observed",
     "sections_changed": [
       "1",
       "2",
@@ -243,7 +243,7 @@
         "legal_topic": "Servicios de Consultoría",
         "original_text": "El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable.",
         "amendment_text": "El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable y análisis regulatorio.",
-        "change_summary": "Se ha ampliado el alcance de los servicios para incluir análisis regulatorio.",
+        "change_summary": "Se amplió el alcance de los servicios para incluir análisis regulatorio.",
         "rationale": "The scope of services has been expanded to include regulatory analysis.",
         "impact_level": "medium"
       },
@@ -255,7 +255,7 @@
         "legal_topic": "Duración del Contrato",
         "original_text": "El servicio tendrá una duración de 6 meses contados a partir de la fecha de firma.",
         "amendment_text": "El servicio tendrá una duración de 9 meses contados a partir de la fecha de firma.",
-        "change_summary": "La duración del servicio se ha extendido de 6 meses a 9 meses.",
+        "change_summary": "Se extendió la duración del servicio de 6 meses a 9 meses.",
         "rationale": "The duration of the service has been extended from 6 months to 9 months.",
         "impact_level": "medium"
       },
@@ -267,7 +267,7 @@
         "legal_topic": "Honorarios",
         "original_text": "El Cliente pagará al Consultor una tarifa mensual de USD 8.000.",
         "amendment_text": "El Cliente pagará al Consultor una tarifa mensual de USD 9,500.",
-        "change_summary": "La tarifa mensual se ha incrementado de USD 8,000 a USD 9,500.",
+        "change_summary": "Se incrementó la tarifa mensual de USD 8,000 a USD 9,500.",
         "rationale": "The monthly fee has been increased from USD 8,000 to USD 9,500.",
         "impact_level": "medium"
       },
@@ -279,14 +279,14 @@
         "legal_topic": "Entregables",
         "original_text": "El Consultor entregará reportes mensuales de avance y un informe final con recomendaciones estratégicas.",
         "amendment_text": "El Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.",
-        "change_summary": "La frecuencia de los reportes de avance ha cambiado de mensual a quincenal.",
+        "change_summary": "Se cambió la frecuencia de los reportes de mensuales a quincenales.",
         "rationale": "The frequency of progress reports has changed from monthly to biweekly.",
         "impact_level": "medium"
       }
     ],
     "unclear_items": [],
-    "summary_of_the_change": "La enmienda modifica varias secciones del contrato original, amplía el alcance y la duración de los servicios, aumenta las tarifas y introduce una nueva sección sobre propiedad intelectual.",
+    "summary_of_the_change": "La enmienda modifica varias secciones del contrato original, amplía el alcance y la duración de los servicios, aumenta las tarifas y presenta una nueva sección sobre propiedad intelectual.",
     "confidence_score": 0.95,
-    "latency_seconds": 11.807
+    "latency_seconds": 13.056
   }
 }

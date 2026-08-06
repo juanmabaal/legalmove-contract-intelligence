@@ -63,3 +63,31 @@ def validate_llm_provider(provider: str) -> str:
         )
 
     return normalized_provider
+
+# LANGFUSE
+
+LANGFUSE_PUBLIC_KEY = os.getenv("LANGFUSE_PUBLIC_KEY")
+LANGFUSE_SECRET_KEY = os.getenv("LANGFUSE_SECRET_KEY")
+LANGFUSE_HOST = os.getenv("LANGFUSE_HOST", "https://cloud.langfuse.com")
+LANGFUSE_BASE_URL = os.getenv("LANGFUSE_BASE_URL", LANGFUSE_HOST)
+
+# LANGSMITH
+
+LANGSMITH_TRACING = os.getenv("LANGSMITH_TRACING", "false")
+LANGSMITH_API_KEY = os.getenv("LANGSMITH_API_KEY")
+LANGSMITH_PROJECT = os.getenv(
+    "LANGSMITH_PROJECT",
+    "legalmove-contract-intelligence",
+)
+
+LANGCHAIN_TRACING_V2 = os.getenv("LANGCHAIN_TRACING_V2", LANGSMITH_TRACING)
+LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY", LANGSMITH_API_KEY)
+LANGCHAIN_PROJECT = os.getenv("LANGCHAIN_PROJECT", LANGSMITH_PROJECT)
+LANGCHAIN_ENDPOINT = os.getenv(
+    "LANGCHAIN_ENDPOINT",
+    "https://api.smith.langchain.com",
+)
+LANGCHAIN_CALLBACKS_BACKGROUND = os.getenv(
+    "LANGCHAIN_CALLBACKS_BACKGROUND",
+    "false",
+)
