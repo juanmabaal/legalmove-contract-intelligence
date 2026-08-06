@@ -2,11 +2,12 @@ import argparse
 import json
 from pathlib import Path
 
-from src.config.settings import OUTPUT_DIR, VISION_PROVIDER, LLM_PROVIDER
+from src.config.settings import LLM_PROVIDER, OUTPUT_DIR, VISION_PROVIDER
 from src.graph.graph_builder import (
     run_contextualization_graph,
+    run_extraction_graph,
     run_image_parsing_graph,
-    )
+)
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
@@ -49,8 +50,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
     parser.add_argument(
         "--pipeline",
-        default="contextualization",
-        choices=["image-parsing", "contextualization"],
+        default="extraction",
+        choices=["image-parsing", "contextualization", "extraction"],
         help="Pipeline stage to execute.",
     )
 
@@ -86,8 +87,16 @@ def main() -> None:
             amendment_image_path=args.amendment,
             vision_provider=args.vision_provider,
         )
-    else:
+    elif args.pipeline == "contextualization":
         output = run_contextualization_graph(
+            case_id=args.case_id,
+            original_image_path=args.original,
+            amendment_image_path=args.amendment,
+            vision_provider=args.vision_provider,
+            llm_provider=args.llm_provider,
+        )
+    else:
+        output = run_extraction_graph(
             case_id=args.case_id,
             original_image_path=args.original,
             amendment_image_path=args.amendment,

@@ -9,7 +9,7 @@
     "mime_type": "image/jpeg",
     "extracted_text": "# CONTRATO DE SERVICIOS DE CONSULTORÍA\n\nEste contrato se celebra el 10 de enero de 2024 entre Orion Consulting Group (\"Consultor\") y GreenWave Energía S.A. (\"Cliente\").\n\n1. Alcance del Servicio  \n   El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable.\n\n2. Duración  \n   El servicio tendrá una duración de 6 meses.\n\n3. Honorarios  \n   El Cliente pagará al Consultor una tarifa mensual de USD 8.000.\n\n4. Entregables  \n   El Consultor entregará reportes mensuales de avance y un informe final con recomendaciones estratégicas.\n\n5. Confidencialidad  \n   Toda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable  \n   Este contrato se regirá por las leyes del Estado de California.",
     "character_count": 800,
-    "latency_seconds": 3.836,
+    "latency_seconds": 3.9,
     "usage": {
       "completion_tokens": 182,
       "prompt_tokens": 1238,
@@ -23,7 +23,7 @@
       "prompt_tokens_details": {
         "audio_tokens": 0,
         "cache_write_tokens": null,
-        "cached_tokens": 1024
+        "cached_tokens": 0
       }
     }
   },
@@ -36,7 +36,7 @@
     "mime_type": "image/jpeg",
     "extracted_text": "# CONTRATO DE SERVICIOS DE CONSULTORÍA – ENMIENDA\n\nLa presente enmienda modifica el contrato celebrado el 10 de enero de 2024 entre Orion Consulting Group (“Consultor”) y GreenWave Energía S.A. (“Cliente”).\n\n1. Alcance del Servicio  \nEl Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable y análisis regulatorio.\n\n2. Duración  \nEl servicio tendrá una duración de 9 meses.\n\n3. Honorarios  \nEl Cliente pagará al Consultor una tarifa mensual de USD 9.500.\n\n4. Entregables  \nEl Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.\n\n5. Confidencialidad  \nToda la información intercambiada durante el proyecto será considerada confidencial.\n\n6. Legislación Aplicable  \nEste contrato se regirá por las leyes del Estado de California.\n\n7. Propiedad Intelectual  \nTodos los entregables producidos durante el proyecto pasarán a ser propiedad del Cliente una vez realizado el pago final.",
     "character_count": 995,
-    "latency_seconds": 3.063,
+    "latency_seconds": 3.336,
     "usage": {
       "completion_tokens": 223,
       "prompt_tokens": 1237,
@@ -50,7 +50,7 @@
       "prompt_tokens_details": {
         "audio_tokens": 0,
         "cache_write_tokens": null,
-        "cached_tokens": 1024
+        "cached_tokens": 0
       }
     }
   },
@@ -148,7 +148,7 @@
         "title": "Propiedad Intelectual",
         "source_document": "amendment",
         "text_excerpt": "Todos los entregables producidos durante el proyecto pasarán a ser propiedad del Cliente una vez realizado el pago final.",
-        "purpose": "Defines the ownership of intellectual property related to the deliverables."
+        "purpose": "Defines the ownership of intellectual property rights for the deliverables."
       }
     ],
     "section_correspondences": [
@@ -156,7 +156,7 @@
         "original_section_id": "1",
         "amendment_section_id": "1",
         "relationship_type": "same_or_equivalent",
-        "rationale": "Both sections define the scope of services, with the amendment expanding the scope to include regulatory analysis."
+        "rationale": "Both sections define the scope of services, though the amendment includes additional details."
       },
       {
         "original_section_id": "2",
@@ -168,19 +168,19 @@
         "original_section_id": "3",
         "amendment_section_id": "3",
         "relationship_type": "same_or_equivalent",
-        "rationale": "Both sections outline the payment terms, with the amendment increasing the monthly fee."
+        "rationale": "Both sections outline the payment terms, with the amendment increasing the fee."
       },
       {
         "original_section_id": "4",
         "amendment_section_id": "4",
         "relationship_type": "same_or_equivalent",
-        "rationale": "Both sections detail the deliverables, with the amendment changing the frequency of progress reports."
+        "rationale": "Both sections detail the deliverables, with the amendment changing the frequency of reports."
       },
       {
         "original_section_id": "5",
         "amendment_section_id": "5",
         "relationship_type": "same_or_equivalent",
-        "rationale": "Both sections establish confidentiality obligations, remaining unchanged in content."
+        "rationale": "Both sections establish confidentiality obligations, remaining unchanged."
       },
       {
         "original_section_id": "6",
@@ -192,15 +192,89 @@
         "original_section_id": "7",
         "amendment_section_id": null,
         "relationship_type": "new_in_amendment",
-        "rationale": "The amendment introduces a new section on intellectual property that was not present in the original contract."
+        "rationale": "This section on intellectual property is new and does not have a corresponding section in the original contract."
       }
     ],
     "new_blocks_in_amendment": [
       "Propiedad Intelectual"
     ],
     "potentially_missing_blocks": [],
-    "structural_summary": "The amendment modifies several sections of the original contract while introducing a new section on intellectual property.",
+    "structural_summary": "The amendment modifies several sections of the original contract while introducing a new section on intellectual property rights.",
     "confidence_score": 0.95,
-    "latency_seconds": 16.476
+    "latency_seconds": 17.464
+  },
+  "extraction": {
+    "case_id": "complex_case",
+    "sections_changed": [],
+    "topics_touched": [],
+    "additions": [
+      {
+        "change_id": "1",
+        "change_type": "addition",
+        "affected_section_id": "7",
+        "affected_section_title": "Propiedad Intelectual",
+        "legal_topic": "Propiedad Intelectual",
+        "original_text": null,
+        "amendment_text": "Todos los entregables producidos durante el proyecto pasarán a ser propiedad del Cliente una vez realizado el pago final.",
+        "change_summary": "Se añade una nueva sección sobre la propiedad intelectual de los entregables.",
+        "rationale": "Esta sección sobre propiedad intelectual es nueva y no tiene una sección correspondiente en el contrato original.",
+        "impact_level": "medium"
+      }
+    ],
+    "deletions": [],
+    "modifications": [
+      {
+        "change_id": "2",
+        "change_type": "modification",
+        "affected_section_id": "1",
+        "affected_section_title": "Alcance del Servicio",
+        "legal_topic": "Servicios de Consultoría",
+        "original_text": "El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable.",
+        "amendment_text": "El Consultor brindará servicios de consultoría estratégica relacionados con la expansión de proyectos de energía renovable y análisis regulatorio.",
+        "change_summary": "Se modifica el alcance del servicio para incluir análisis regulatorio.",
+        "rationale": "El alcance del servicio se amplía con la inclusión de análisis regulatorio.",
+        "impact_level": "medium"
+      },
+      {
+        "change_id": "3",
+        "change_type": "modification",
+        "affected_section_id": "2",
+        "affected_section_title": "Duración",
+        "legal_topic": "Duración del Contrato",
+        "original_text": "El servicio tendrá una duración de 6 meses.",
+        "amendment_text": "El servicio tendrá una duración de 9 meses.",
+        "change_summary": "Se modifica la duración del servicio, extendiéndola a 9 meses.",
+        "rationale": "La duración del servicio se ha incrementado de 6 a 9 meses.",
+        "impact_level": "medium"
+      },
+      {
+        "change_id": "4",
+        "change_type": "modification",
+        "affected_section_id": "3",
+        "affected_section_title": "Honorarios",
+        "legal_topic": "Honorarios",
+        "original_text": "El Cliente pagará al Consultor una tarifa mensual de USD 8.000.",
+        "amendment_text": "El Cliente pagará al Consultor una tarifa mensual de USD 9.500.",
+        "change_summary": "Se modifica la tarifa mensual del Consultor, aumentando a USD 9.500.",
+        "rationale": "La tarifa mensual ha sido incrementada de USD 8.000 a USD 9.500.",
+        "impact_level": "medium"
+      },
+      {
+        "change_id": "5",
+        "change_type": "modification",
+        "affected_section_id": "4",
+        "affected_section_title": "Entregables",
+        "legal_topic": "Entregables",
+        "original_text": "El Consultor entregará reportes mensuales de avance y un informe final con recomendaciones estratégicas.",
+        "amendment_text": "El Consultor entregará reportes quincenales de avance y un informe final con recomendaciones estratégicas.",
+        "change_summary": "Se modifica la frecuencia de los reportes de avance, cambiando de mensuales a quincenales.",
+        "rationale": "La frecuencia de los reportes de avance ha cambiado de mensual a quincenal.",
+        "impact_level": "medium"
+      }
+    ],
+    "unclear_items": [],
+    "summary_of_the_change": "La enmienda introduce una nueva sección sobre propiedad intelectual y modifica varias secciones existentes, incluyendo el alcance del servicio, duración, honorarios y entregables.",
+    "confidence_score": 0.95,
+    "latency_seconds": 10.484
   }
 }
