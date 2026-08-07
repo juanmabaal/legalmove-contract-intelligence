@@ -5,9 +5,9 @@ from typing import Any
 
 from langchain_core.prompts import ChatPromptTemplate
 
-from src.observability.tracing import get_langfuse_callbacks, trace_generation
-
+from src.config.settings import LLM_PROVIDER
 from src.models import ContextualizationOutput, ContractChangeOutput
+from src.observability.tracing import get_langfuse_callbacks, trace_generation
 from src.providers.llm_factory import get_chat_model
 
 EXTRACTION_SYSTEM_PROMPT = """
@@ -97,6 +97,24 @@ def _extract_response_text(response: Any) -> str:
 
     return str(content)
 
+def _extract_usage_metadata(response: Any) -> dict[str, Any]:
+    usage_metadata = getattr(response, "usage_metadata", None)
+
+    if isinstance(usage_metadata, dict):
+        return usage_metadata
+
+    response_metadata = getattr(response, "response_metadata", {}) or {}
+
+    token_usage = response_metadata.get("token_usage")
+    if isinstance(token_usage, dict):
+        return token_usage
+
+    usage = response_metadata.get("usage")
+    if isinstance(usage, dict):
+        return usage
+
+    return {}
+
 def _extract_json_object(raw_text: str) -> dict[str, Any]:
     cleaned = raw_text.strip()
 
@@ -126,6 +144,15 @@ def _extract_json_object(raw_text: str) -> dict[str, Any]:
             f"Failed to parse extraction JSON: {error}"
         ) from error
 
+def _get_model_name(llm: Any) -> str:
+    return str(
+        getattr(
+            llm,
+            "model_name",
+            getattr(llm, "model", "unknown"),
+        )
+    )
+
 def _serialize_contextualization(
         contextualization: ContextualizationOutput | dict[str, Any],
 ) -> str:
@@ -139,11 +166,11 @@ def _serialize_contextualization(
     )
 
 def run_extraction_agent(
-        case_id: str,
-        original_contract_text: str,
-        amendment_text: str,
-        contextualization: ContextualizationOutput | dict[str,Any],
-        provider: str | None = None
+    case_id: str,
+    original_contract_text: str,
+    amendment_text: str,
+    contextualization: ContextualizationOutput | dict[str, Any],
+    provider: str | None = None,
 ) -> ContractChangeOutput:
     started_at = time.perf_counter()
 
@@ -151,6 +178,9 @@ def run_extraction_agent(
         provider=provider,
         temperature=0,
     )
+
+    selected_provider = provider or LLM_PROVIDER
+    model_name = _get_model_name(llm)
 
     prompt = ChatPromptTemplate.from_messages(
         [
@@ -165,11 +195,13 @@ def run_extraction_agent(
         ensure_ascii=False,
     )
 
-    contextualization_json = _serialize_contextualization(contextualization)
+    contextualization_json = _serialize_contextualization(
+        contextualization
+    )
 
     messages = prompt.format_messages(
-        case_id = case_id,
-        json_schema= json_schema,
+        case_id=case_id,
+        json_schema=json_schema,
         original_contract_text=original_contract_text,
         amendment_text=amendment_text,
         contextualization_json=contextualization_json,
@@ -183,6 +215,8 @@ def run_extraction_agent(
         "metadata": {
             "case_id": case_id,
             "agent": "ExtractionAgent",
+            "provider": selected_provider,
+            "model": model_name,
         },
     }
 
@@ -191,7 +225,7 @@ def run_extraction_agent(
 
     with trace_generation(
         name="extraction_agent_generation",
-        model=getattr(llm, "model_name", "unknown"),
+        model=model_name,
         input_data={
             "case_id": case_id,
             "original_contract_length": len(original_contract_text),
@@ -199,22 +233,33 @@ def run_extraction_agent(
         },
         metadata={
             "agent": "ExtractionAgent",
-            "provider": provider or "default",
+            "provider": selected_provider,
+            "model": model_name,
         },
     ) as generation:
-        response = llm.invoke(messages, config=llm_config)
+        response = llm.invoke(
+            messages,
+            config=llm_config,
+        )
+
         response_text = _extract_response_text(response)
+        usage = _extract_usage_metadata(response)
 
         generation.update(
             output_data={
                 "response_preview": response_text[:2000],
-            }
+            },
+            metadata={
+                "usage": usage if isinstance(usage, dict) else {},
+            },
         )
 
-        
     response_data = _extract_json_object(response_text)
 
     response_data["case_id"] = response_data.get("case_id", case_id)
+    response_data["llm_provider"] = selected_provider
+    response_data["llm_model"] = model_name
+    response_data["usage"] = usage if isinstance(usage, dict) else {}
 
     try:
         extraction_output = ContractChangeOutput.model_validate(
@@ -225,11 +270,14 @@ def run_extraction_agent(
             f"Extraction output validation failed: {error}"
         ) from error
 
-    latency_seconds = round(time.perf_counter() - started_at,3)
+    latency_seconds = round(time.perf_counter() - started_at, 3)
 
     extraction_output = extraction_output.model_copy(
         update={
-            "latency_seconds": latency_seconds
+            "latency_seconds": latency_seconds,
+            "llm_provider": selected_provider,
+            "llm_model": model_name,
+            "usage": usage if isinstance(usage, dict) else {},
         }
     )
 

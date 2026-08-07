@@ -118,6 +118,18 @@ class ContextualizationOutput(BaseModel):
         default=0.0,
         description="Contextualization agent latency in seconds."
     )
+    llm_provider: str | None = Field(
+        default=None,
+        description="Text LLM provider used by the ContextualizationAgent.",
+    )
+    llm_model: str | None = Field(
+        default=None,
+        description="Text LLM model used by the ContextualizationAgent.",
+    )
+    usage: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Token usage metadata returned by the text LLM, when available.",
+    )
 
 class ContractContextualizationPipelineOutput(BaseModel):
     case_id: str = Field(
@@ -220,6 +232,18 @@ class ContractChangeOutput(BaseModel):
     latency_seconds: float = Field(
         default=0.0,
         description="Extraction agent latency in seconds."
+    )
+    llm_provider: str | None = Field(
+        default=None,
+        description="Text LLM provider used by the ExtractionAgent.",
+    )
+    llm_model: str | None = Field(
+        default=None,
+        description="Text LLM model used by the ExtractionAgent.",
+    )
+    usage: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Token usage metadata returned by the text LLM, when available.",
     )
 
 

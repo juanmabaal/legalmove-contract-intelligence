@@ -60,3 +60,10 @@ outputs/*.log
 
 *.sqlite
 *.db
+
+# Streamlit runtime outputs
+outputs/runtime_uploads/
+outputs/streamlit/
+
+# Streamlit local secrets
+.streamlit/secrets.toml
