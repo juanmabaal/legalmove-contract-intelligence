@@ -372,9 +372,9 @@ legalmove-contract-intelligence/
 
 ---
 
-## 🖼️ Recommended Screenshots to Add
+## 🖼️ Screenshots to Added
 
-Add the following screenshots under:
+Following screenshots under:
 
 ```text
 assets/screenshots/
@@ -386,7 +386,7 @@ assets/screenshots/
 assets/screenshots/01_streamlit_home.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - LegalMove title
@@ -403,7 +403,7 @@ Recommended content:
 assets/screenshots/02_input_documents.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - Original contract image preview
@@ -418,7 +418,7 @@ Recommended content:
 assets/screenshots/03_summary_tab.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - Additions count
@@ -436,7 +436,7 @@ Recommended content:
 assets/screenshots/04_changes_table.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - change_type
@@ -455,7 +455,7 @@ Recommended content:
 assets/screenshots/05_section_map.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - original_section_id
@@ -472,7 +472,7 @@ Recommended content:
 assets/screenshots/06_tokens_latency.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - stage
@@ -492,7 +492,7 @@ Recommended content:
 assets/screenshots/07_tracing_tab.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - Langfuse vs LangSmith comparison table
@@ -507,7 +507,7 @@ Recommended content:
 assets/screenshots/08_raw_json.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - Full structured JSON output
@@ -522,7 +522,7 @@ Recommended content:
 assets/screenshots/09_langfuse_trace.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - contract-analysis trace
@@ -541,7 +541,7 @@ Recommended content:
 assets/screenshots/10_langsmith_run.png
 ```
 
-Recommended content:
+Content:
 
 ```text
 - legalmove_extraction_pipeline
