@@ -7,6 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from src.observability.tracing import get_langfuse_callbacks, trace_generation
 
+from src.config.settings import LLM_PROVIDER
 from src.models import ContextualizationOutput
 from src.providers.llm_factory import get_chat_model
 
@@ -78,6 +79,31 @@ def _extract_response_text(response:Any) -> str:
 
     return str(content)
 
+def _get_model_name(llm: Any) -> str:
+    return str(
+        getattr(
+            llm,
+            "model_name",
+            getattr(llm, "model", "unknown"),
+        )
+    )
+
+def _extract_usage_metadata(response: Any) -> dict[str, Any]:
+    usage_metadata = getattr(response, "usage_metada", None)
+
+    if usage_metadata:
+        return dict(usage_metadata)
+
+    response_metadata = getattr(response, "response_metadata", {}) or {}
+
+    if "token_usage" in response_metadata:
+        return response_metadata["token_usage"]
+
+    if "usage" in response_metadata:
+        return response_metadata["usage"]
+
+    return {}
+
 def _extract_json_object(raw_text: str) -> dict[str, Any]:
     cleaned = raw_text.strip()
 
@@ -103,22 +129,25 @@ def _extract_json_object(raw_text: str) -> dict[str, Any]:
         ) from error
 
 def run_contextualization_agent(
-        case_id : str,
-        original_contract_text: str,
-        amendment_text: str,
-        provider: str | None = None,
+    case_id: str,
+    original_contract_text: str,
+    amendment_text: str,
+    provider: str | None = None,
 ) -> ContextualizationOutput:
     started_at = time.perf_counter()
 
     llm = get_chat_model(
         provider=provider,
-        temperature=0
+        temperature=0,
     )
+
+    selected_provider = provider or LLM_PROVIDER
+    model_name = _get_model_name(llm)
 
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", CONTEXTUALIZATION_SYSTEM_PROMPT),
-            ("user", CONTEXTUALIZATION_USER_PROMPT)
+            ("user", CONTEXTUALIZATION_USER_PROMPT),
         ]
     )
 
@@ -138,11 +167,13 @@ def run_contextualization_agent(
     callbacks = get_langfuse_callbacks()
 
     llm_config: dict[str, Any] = {
-        "run_name" : "contextualization_llm",
+        "run_name": "contextualization_llm",
         "tags": ["legalmove", "contextualization-agent"],
         "metadata": {
             "case_id": case_id,
             "agent": "ContextualizationAgent",
+            "provider": selected_provider,
+            "model": model_name,
         },
     }
 
@@ -151,7 +182,7 @@ def run_contextualization_agent(
 
     with trace_generation(
         name="contextualization_agent_generation",
-        model=getattr(llm, "model_name", "unknown"),
+        model=model_name,
         input_data={
             "case_id": case_id,
             "original_contract_length": len(original_contract_text),
@@ -159,20 +190,33 @@ def run_contextualization_agent(
         },
         metadata={
             "agent": "ContextualizationAgent",
-            "provider": provider or "default",
+            "provider": selected_provider,
+            "model": model_name,
         },
-    ) as generation: 
-        response = llm.invoke(messages, config=llm_config)
+    ) as generation:
+        response = llm.invoke(
+            messages,
+            config=llm_config,
+        )
+
         response_text = _extract_response_text(response)
+        usage = _extract_usage_metadata(response)
 
         generation.update(
             output_data={
                 "response_preview": response_text[:2000],
-            }
+            },
+            metadata={
+                "usage": usage,
+            },
         )
-        
-   
+
     response_data = _extract_json_object(response_text)
+
+    response_data["case_id"] = response_data.get("case_id", case_id)
+    response_data["llm_provider"] = selected_provider
+    response_data["llm_model"] = model_name
+    response_data["usage"] = usage
 
     try:
         contextualization_output = ContextualizationOutput.model_validate(
@@ -180,7 +224,7 @@ def run_contextualization_agent(
         )
     except Exception as error:
         raise ContextualizationAgentError(
-             f"Contextualization output validation failed: {error}"
+            f"Contextualization output validation failed: {error}"
         ) from error
 
     latency_seconds = round(time.perf_counter() - started_at, 3)
@@ -188,8 +232,10 @@ def run_contextualization_agent(
     contextualization_output = contextualization_output.model_copy(
         update={
             "latency_seconds": latency_seconds,
+            "llm_provider": selected_provider,
+            "llm_model": model_name,
+            "usage": usage,
         }
     )
 
     return contextualization_output
-
